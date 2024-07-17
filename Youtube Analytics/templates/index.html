@@ -1,0 +1,34 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Sentiment Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Sentiment Analysis</h1>
+        <form action="/" method="POST">
+            <label for="video_url">Enter YouTube Video URL:</label>
+            <input type="text" id="video_url" name="video_url" required>
+            <button type="submit">Analyze Comments</button>
+        </form>
+
+        {% if comments %}
+        <h2>Extracted Comments:</h2>
+        <ul>
+            {% for comment in comments %}
+            <li>{{ comment }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Sentiment Analysis Results:</h2>
+        <p>Positive comments: {{ positive_percent }}%</p>
+        <p>Neutral comments: {{ neutral_percent }}%</p>
+        <p>Negative comments: {{ negative_percent }}%</p>
+        {% endif %}
+    </div>
+</body>
+</html>
